@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+
+  # Main app
+  flask-app:
+    build: .
+    container_name: flask-app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - mongo
+
+#  # Caching and in-memory storage
+#  flask-redis:
+#    container_name: flask-redis
+#    image: redis:6.2.6-bullseye
+#    ports:
+#      - "6379"
+
+  # Database  
+  flask-mongo:
+    container_name: flask-mongo
+    image: mongo:5.0
+    ports:
+      - "27017"
